@@ -1,0 +1,15 @@
+{
+  "name": "hal",
+  "version": "0.0.0",
+  "description": "a HAL (Hypertext Application Language) parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/suites"
+  },
+  "repository": "",
+  "keywords": [
+    "hal"
+  ],
+  "author": "Xavier Cambar <xcanbar@gmail.com>",
+  "license": "MIT"
+}
