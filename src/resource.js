@@ -24,7 +24,7 @@ function Resource(json, links, embedded) {
   };
 
   this.link = function (key) {
-    return resourceLinks[key];
+    return key ? resourceLinks[key] : resourceLinks[key];
   };
 }
 

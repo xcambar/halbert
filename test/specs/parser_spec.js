@@ -1,6 +1,6 @@
 /*global it:true, describe:true*/
-var parser = require('../../src/parser'),
-    Resource = require('../../src/resource');
+var parser = require('src/parser'),
+    Resource = require('src/resource');
 
 describe("HAL-Parser", function () {
   "use strict";
@@ -15,6 +15,21 @@ describe("HAL-Parser", function () {
 
   it("should return an instance of Resource", function () {
     parser({_links: { self: "..." }}).should.be.instanceOf(Resource);
+  });
+
+  it("should be non-destructive to original json", function () {
+    var json = {
+      _links: {
+        "self": '...'
+      },
+      embedded: {
+        stuff: []
+      },
+      prop: "TRUE"
+    };
+
+    parser(json);
+    json.should.contain.keys(['_links', 'embedded', 'prop'])
   });
 });
 

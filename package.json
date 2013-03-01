@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "description": "a HAL (Hypertext Application Language) parser",
   "main": "index.js",
-  "scripts": {
-    "test": "cd test; mocha suites"
-  },
   "repository": "",
   "keywords": [
     "hal"
@@ -17,8 +14,10 @@
   },
   "devDependencies": {
     "chai": "~1.5.0",
-    "requirejs": "~2.1.4",
     "sinon-chai": "~2.3.1",
     "mocha": "~1.8.1"
+  },
+  "dependencies": {
+    "lodash": "~1.0.1"
   }
 }

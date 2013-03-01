@@ -1,5 +1,5 @@
 /*global it:true, describe:true */
-var utils = require('../../src/utils');
+var utils = require('src/utils');
 
 describe("utils", function () {
   "use strict";

@@ -4,4 +4,5 @@ var chai = require('chai'),
 chai.use(sinon_chai);
 chai.should();
 
-require('./suites/all');
+require('./suites/specs');
+require('./suites/acceptance');
