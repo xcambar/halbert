@@ -4,12 +4,21 @@
   "description": "a HAL (Hypertext Application Language) parser",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/suites"
+    "test": "cd test; mocha suites"
   },
   "repository": "",
   "keywords": [
     "hal"
   ],
   "author": "Xavier Cambar <xcanbar@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "cd test; npm test"
+  },
+  "devDependencies": {
+    "chai": "~1.5.0",
+    "requirejs": "~2.1.4",
+    "sinon-chai": "~2.3.1",
+    "mocha": "~1.8.1"
+  }
 }
