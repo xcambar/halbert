@@ -13,7 +13,7 @@
   "author": "Xavier Cambar <xcanbar@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "cd test; npm test"
+    "test": "mocha test/init.js"
   },
   "devDependencies": {
     "chai": "~1.5.0",
