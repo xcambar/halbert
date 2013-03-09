@@ -1,5 +1,6 @@
 /*global it:true, describe:true */
 var Link = require('src/link');
+var expect = require('chai').expect;
 
 function builder(arg) {
   return function () {
@@ -13,15 +14,54 @@ describe("Link", function () {
     Link.should.be.a('function');
   });
 
-  it("MUST be an object literal", function () {
+  it("MUST be described by an object literal", function () {
     builder('str').should.throw(TypeError);
   });
 
-  it("MUST have a HREF property", function () {
-    builder({}).should.throw(ReferenceError);
-    builder({}).should.throw(/Missing "href"/);
+  describe("HREF property", function () {
+    it("MUST be present", function () {
+      builder({}).should.throw(ReferenceError);
+      builder({}).should.throw(/Missing "href"/);
 
-    builder({href: '...'}).should.not.throw(Error);
+      builder({href: '...'}).should.not.throw(Error);
+    });
   });
+
+  describe("TEMPLATED property", function () {
+    it("can be true", function () {
+      var withTemplated = new Link({href: '...', templated: true});
+      withTemplated.templated.should.be.true;
+    });
+    it("defaults to false", function () {
+      var withoutTemplated = new Link({href: '...', templated: 'NAY'});
+      withoutTemplated.templated.should.be.false;
+      var undefinedTemplated = new Link({href: '...'});
+      undefinedTemplated.templated.should.be.false;
+    });
+  });
+
+  describe("DEPRECATION property", function () {
+    it("is optional", function () {
+      var withoutDeprecation = new Link({href: '...'});
+      withoutDeprecation.should.contain.key('deprecated');
+      expect(withoutDeprecation.deprecated).to.be.false;
+      expect(withoutDeprecation.deprecationInfo).to.be.null;
+    });
+
+    it("contains info about deprecation", function () {
+      var withDeprecation = new Link({href: '...', deprecation: 'NAY'});
+      withDeprecation.deprecated.should.be.true;
+      withDeprecation.deprecationInfo.should.eql('NAY');
+
+      var withBoolDeprecation = new Link({href: '...', deprecation: true});
+      withBoolDeprecation.deprecated.should.be.true;
+      expect(withBoolDeprecation.deprecationInfo).to.be.null;
+
+      var withBoolDeprecation = new Link({href: '...', deprecation: false});
+      withBoolDeprecation.deprecated.should.be.false;
+      expect(withBoolDeprecation.deprecationInfo).to.be.null;
+    });
+  });
+
 });
 
