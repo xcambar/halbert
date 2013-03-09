@@ -11,7 +11,7 @@ describe("HAL-Parser", function () {
   it("should be non-destructive to original json", function () {
     var json = {
       _links: {
-        "self": '...'
+        "self": {href: '...'}
       },
       embedded: {
         stuff: []

@@ -10,7 +10,7 @@ describe("Resources", function () {
     Resource.should.be.a('function');
   });
 
-  it("MUST have a resource as its root object", function () {
+  it("MUST have a Resource as its root object", function () {
     parser({}).should.be.instanceOf(Resource);
     parser.bind(undefined, []).should.throw(Error);
     parser.bind(undefined).should.throw(Error);
@@ -30,12 +30,16 @@ describe("Resources", function () {
     var r1 = parser({});
     r1.links().should.be.empty;
 
-    var r2 = parser({_links: {self: '..'}});
+    var r2 = parser({_links: {
+      "self": {href: '...'}
+    }});
     r2.links().should.be.instanceOf(LinkCollection);
   });
 
   it("should have Link instances as link properties", function () {
-    var r2 = parser({_links: {self: '..'}});
+    var r2 = parser({_links: {
+      "self": {href: '...'}
+    }});
     r2.links('self').should.be.instanceOf(Link);
   });
 
