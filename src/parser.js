@@ -3,11 +3,7 @@ var _ = require('lodash');
 
 function parser(json) {
   "use strict";
-
-  if (!json._links) {
-    throw new TypeError('No _links provided.');
-  }
-
+ 
   json = _.cloneDeep(json);
 
   var links = json._links;
