@@ -7,7 +7,6 @@
       { "href": "/admins/2", "title": "Fred" },
       { "href": "/admins/5", "title": "Kate" }
     ]
-  },
   currentlyProcessing: 14,
   shippedToday: 20,
   "_embedded": {

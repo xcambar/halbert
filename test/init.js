@@ -5,4 +5,3 @@ chai.use(sinon_chai);
 chai.should();
 
 require('./suites/specs');
-require('./suites/acceptance');
