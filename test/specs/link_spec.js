@@ -10,7 +10,7 @@ describe("Link", function () {
   it("MUST be an object literal", function () {
     function builder(arg) {
       return function () {
-        new Link(arg);
+        return new Link(arg);
       };
     }
 
