@@ -8,15 +8,6 @@ describe("HAL-Parser", function () {
     parser.should.be.a('function');
   });
 
-  it("should throw an exception if no `_links` attribute is available", function () {
-    parser.bind(undefined, {}).should.throw(TypeError);
-    parser.bind(undefined, {}).should.throw(/no _links/i);
-  });
-
-  it("should return an instance of Resource", function () {
-    parser({_links: { self: "..." }}).should.be.instanceOf(Resource);
-  });
-
   it("should be non-destructive to original json", function () {
     var json = {
       _links: {
@@ -29,7 +20,7 @@ describe("HAL-Parser", function () {
     };
 
     parser(json);
-    json.should.contain.keys(['_links', 'embedded', 'prop'])
+    json.should.contain.keys(['_links', 'embedded', 'prop']);
   });
 });
 

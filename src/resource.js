@@ -1,17 +1,23 @@
 var parser = require('./parser'),
-    ResourceLinks = require('./links');
+    ResourceLinks = require('./links'),
+    utils = require('./utils');
 
 function parseEmbedded(embedded) {
   "use strict";
   var parsed = {};
   Object.keys(embedded).forEach(function (key) {
     var typedResources = embedded[key];
-    parsed[key] = typedResources.map(parser);
+    parsed[key] = typedResources.map ? typedResources.map(parser) : typedResources;
   });
+  return parsed;
 }
 
 function Resource(json, links, embedded) {
   "use strict";
+  if (!utils.isObjectLiteral(json)) {
+    throw new Error('No object provided');
+  }
+
   var embeddedResources = parseEmbedded(embedded || {});
   var resourceLinks = new ResourceLinks(links);
 
@@ -23,8 +29,8 @@ function Resource(json, links, embedded) {
     return key ? embeddedResources[key] : embeddedResources;
   };
 
-  this.link = function (key) {
-    return key ? resourceLinks[key] : resourceLinks[key];
+  this.links = function (key) {
+    return key ? resourceLinks.get(key) : resourceLinks;
   };
 }
 
