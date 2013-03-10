@@ -15,7 +15,7 @@ This Javascript implementation has been made to be _mostly_ compliant with the c
 * `_links_` is still optional to a Resource, but if present, it MUST contain a `self` entry
 * Validation of templated URIs has not been implemented.
 
-# Usage
+# Installation
 
 ## Node.js
 
@@ -23,13 +23,33 @@ Install it via NPM:
 
     npm install hal
 
-Then in your code:
+Then in your code
 
-    parser = require('hal').parser;
+    var parser = require('hal').parser;
 
 ## Browser
 
 You can build `hal` by using [browserify](http://github.com/substack/node-browserify).
+
+    %ROOT_PATH%/node_modules/browserify/bin/cmd.js -r index
+
+Then in your code
+
+    parser = require('./index').parser;
+
+# Usage
+
+Simply execute
+
+    var resource = parser(json_object)
+
+If for any reason, the `json_object` does not describe a valid HAL Resource, an Error will be thrown.
+
+# Roadmap
+
+* Add examples for various situations (Node.js, Express, Ember, Angular, Backbone...)
+* Extend the scope to make it a writer of HAL Resources as well as a parser.
+* Better code documentation
 
 # License
 
