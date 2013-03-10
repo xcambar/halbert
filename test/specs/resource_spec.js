@@ -1,8 +1,8 @@
 /*global it:true, describe:true */
-var Resource = require('src/resource');
-var LinkCollection = require('src/links');
-var Link = require('src/link');
-var parser = require('src/parser');
+var Resource = require('../../src/resource');
+var LinkCollection = require('../../src/links');
+var Link = require('../../src/link');
+var parser = require('../../src/parser');
 
 describe("Resources", function () {
   "use strict";

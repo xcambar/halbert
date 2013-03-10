@@ -1,5 +1,5 @@
 /*global it:true, describe:true */
-var Link = require('src/link');
+var Link = require('../../src/link');
 var expect = require('chai').expect;
 
 function builder(arg) {

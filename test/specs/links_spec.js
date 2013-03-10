@@ -1,5 +1,5 @@
 /*global it:true, describe:true*/
-var links = require('src/links');
+var links = require('../../src/links');
 
 describe("Links parser", function () {
   "use strict";

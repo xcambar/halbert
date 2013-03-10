@@ -1,6 +1,6 @@
 /*global it:true, describe:true*/
-var parser = require('src/parser'),
-    Resource = require('src/resource');
+var parser = require('../../src/parser'),
+    Resource = require('../../src/resource');
 
 describe("HAL-Parser", function () {
   "use strict";
