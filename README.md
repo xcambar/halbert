@@ -29,7 +29,7 @@ Then in your code:
 
 ## Browser
 
-You can build `hal` by using [browserify](substack/node-browserify).
+You can build `hal` by using [browserify](http://github.com/substack/node-browserify).
 
 # License
 
