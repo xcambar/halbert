@@ -1,8 +1,8 @@
 [
-  "test/specs/links_spec",
-  "test/specs/parser_spec",
-  "test/specs/resource_spec",
-  "test/specs/link_spec",
-  "test/specs/utils_spec"
+  "../specs/links_spec",
+  "../specs/parser_spec",
+  "../specs/resource_spec",
+  "../specs/link_spec",
+  "../specs/utils_spec"
 ].map(require);
 
