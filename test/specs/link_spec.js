@@ -63,5 +63,14 @@ describe("Link", function () {
     });
   });
 
+  describe("other properties", function () {
+    it("must be optional", function () {
+      builder({href: '...'}).should.not.throw(Error);
+    });
+    it("must have strings as values", function () {
+      builder({href: '...', type: []}).should.throw(Error);
+      builder({href: '...', type: ''}).should.not.throw(Error);
+    });
+  });
 });
 
