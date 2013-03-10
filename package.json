@@ -1,9 +1,9 @@
 {
   "name": "hal",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "a HAL (Hypertext Application Language) parser",
   "main": "index.js",
-  "repository": "",
+  "repository": "git://github.com/xcambar/hal.git",
   "keywords": [
     "hal"
   ],
