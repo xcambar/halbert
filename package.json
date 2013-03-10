@@ -1,5 +1,5 @@
 {
-  "name": "hal",
+  "name": "halbert",
   "version": "0.1.0",
   "description": "a HAL (Hypertext Application Language) parser",
   "main": "index.js",

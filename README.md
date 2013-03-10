@@ -1,14 +1,14 @@
-#HAL [![Build Status](https://travis-ci.org/xcambar/hal.png?branch=master)](https://travis-ci.org/xcambar/hal)
+#HALbert [![Build Status](https://travis-ci.org/xcambar/hal.png?branch=master)](https://travis-ci.org/xcambar/hal)
 
 > HAL stands for Hypermedia Application Language. It proposes a media type for representing resources and their relations with hyperlinks.
 
 This JS implementation is for the `HAL-JSON` variant, having the media type `application/hal+json`.
 
-## Status
+## HAL Status
 
 HAL-JSON is currently at its 5th revision as an Internet Draft at the IETF, and can be read [here](http://tools.ietf.org/html/draft-kelly-json-hal-05).
 
-## Compliance
+## HALbert compliance with HAL
 
 This Javascript implementation has been made to be _mostly_ compliant with the current draft. The divergences with the draft being:
 
@@ -21,15 +21,15 @@ This Javascript implementation has been made to be _mostly_ compliant with the c
 
 Install it via NPM:
 
-    npm install hal
+    npm install halbert
 
 Then in your code
 
-    var parser = require('hal').parser;
+    var parser = require('halbert').parser;
 
 ## Browser
 
-You can build `hal` by using [browserify](http://github.com/substack/node-browserify).
+You can build `halbert` by using [browserify](http://github.com/substack/node-browserify).
 
     %ROOT_PATH%/node_modules/browserify/bin/cmd.js -r index
 
@@ -53,7 +53,7 @@ If for any reason, the `json_object` does not describe a valid HAL Resource, an 
 
 # License
 
-MIT, see [LICENSE.md](xcambar/hal/LICENSE.md)
+MIT, see [LICENSE.md](xcambar/halbert/LICENSE.md)
 
 
 
