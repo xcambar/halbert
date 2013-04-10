@@ -21,6 +21,6 @@
     "lodash": "~1.0.1"
   },
   "optionalDependencies": {
-    "browserify": "~2.4.3"
+    "browserify": "2"
   }
 }

@@ -31,11 +31,12 @@ Then in your code
 
 You can build `halbert` by using [browserify](http://github.com/substack/node-browserify).
 
-    %ROOT_PATH%/node_modules/browserify/bin/cmd.js -r index
+    %ROOT_PATH%/node_modules/browserify/bin/cmd.js index.js --standalone halbert
 
-Then in your code
+The generated file will be [UMD](https://github.com/umdjs/umd)-compatible, which means:
 
-    parser = require('./index').parser;
+* If you use it in an AMD application, HALbert will be available by doing `require('halbert')`.
+* Otherwise, il will be available as `window.halbert`
 
 # Usage
 
