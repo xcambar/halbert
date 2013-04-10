@@ -1,4 +1,4 @@
-#HALbert [![Build Status](https://travis-ci.org/xcambar/hal.png?branch=master)](https://travis-ci.org/xcambar/hal)
+#HALbert [![Build Status](https://travis-ci.org/xcambar/halbert.png?branch=master)](https://travis-ci.org/xcambar/halbert)
 
 > HAL stands for Hypermedia Application Language. It proposes a media type for representing resources and their relations with hyperlinks.
 
