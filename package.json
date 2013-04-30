@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "a HAL (Hypertext Application Language) parser",
   "main": "index.js",
-  "repository": "git://github.com/xcambar/hal.git",
+  "repository": "git://github.com/xcambar/halbert.git",
   "keywords": [
     "hal"
   ],
