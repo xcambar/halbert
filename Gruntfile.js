@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: ['index.js', 'Gruntfile.js', '**/*.js', '!node_modules/**/*'],
+      files: ['index.js', 'Gruntfile.js', '**/*.js', '**/*.json', '!node_modules/**/*'],
       tasks: ['default']
     },
   })
