@@ -1,8 +1,7 @@
-var parser = require('./parser'),
-    ResourceLinks = require('./links'),
+var ResourceLinks = require('./links'),
     utils = require('./utils');
 
-function parseEmbedded(embedded) {
+function parseEmbedded(embedded, parser) {
   "use strict";
   var parsed = {};
   Object.keys(embedded).forEach(function (key) {
@@ -12,13 +11,14 @@ function parseEmbedded(embedded) {
   return parsed;
 }
 
-function Resource(json, links, embedded) {
+function Resource(json, links, embedded, parser) {
   "use strict";
+
   if (!utils.isObjectLiteral(json)) {
     throw new Error('No object provided');
   }
 
-  var embeddedResources = parseEmbedded(embedded || {});
+  var embeddedResources = parseEmbedded(embedded || {}, parser);
   var resourceLinks = new ResourceLinks(links);
 
   this.toJSON = function () {

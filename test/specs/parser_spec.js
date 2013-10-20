@@ -32,22 +32,24 @@ describe("HAL-Parser", function () {
     resource.links('self').href.should.equal('dummy')
   });
 
-  it.skip("should parse the fixture example 1", function () {
+  it("should parse the fixture example 1", function () {
     var json = fixtures.read('ex1')
     var resource = parser(json);
-    /*
-    Now some assertions like the following should follow. Unfortunately, parsing
-    already breaks due to embedded resources.
+
+    console.log(JSON.stringify(resource))
 
     resource.links().should.exist
     resource.links('self').href.should.equal('/orders')
+    resource.links('self').templated.should.be.false
     resource.links('next').href.should.equal('/orders?page=2')
     resource.links('find').href.should.equal('/orders{?id}')
     resource.links('find').templated.should.be.true
-    ...
+    // TODO add assertions for admin link object array here once that works
+
+    // resource.currentlyProcessing.should.equal(14)
+    //resource.shippedToday.should.equal(20)
+
     resource.embedded().should.exist
-    ...
-    */
   });
 });
 
