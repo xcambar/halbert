@@ -36,8 +36,6 @@ describe("HAL-Parser", function () {
     var json = fixtures.read('ex1');
     var resource = parser(json);
 
-    console.log(JSON.stringify(resource));
-
     resource.links().should.exist;
     resource.links('self').href.should.equal('/orders');
     resource.links('self').templated.should.be.false;
