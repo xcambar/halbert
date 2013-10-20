@@ -7,8 +7,9 @@
       { "href": "/admins/2", "title": "Fred" },
       { "href": "/admins/5", "title": "Kate" }
     ]
-  currentlyProcessing: 14,
-  shippedToday: 20,
+  },
+  "currentlyProcessing": 14,
+  "shippedToday": 20,
   "_embedded": {
    "orders": [{
        "_links": {
@@ -18,7 +19,7 @@
        },
        "total": 30.00,
        "currency": "USD",
-       "status": "shipped",
+       "status": "shipped"
      },{
        "_links": {
          "self": { "href": "/orders/124" },
