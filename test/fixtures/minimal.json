@@ -1,5 +1,5 @@
 {
   "_links": {
-    "self": "dummy"
+    "self": { "href": "dummy" }
   }
 }

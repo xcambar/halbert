@@ -1,18 +1,18 @@
 var Resource = require('./resource');
 var _ = require('lodash');
 
-function parser(json) {
+function parser(halObject) {
   "use strict";
- 
-  json = _.cloneDeep(json);
 
-  var links = json._links;
-  delete json._links;
+  var unparsedResource = _.cloneDeep(halObject);
 
-  var embedded = json._embedded;
-  delete json._embedded;
+  var links = unparsedResource._links;
+  delete unparsedResource._links;
 
-  return new Resource(json, links, embedded);
+  var embedded = unparsedResource._embedded;
+  delete unparsedResource._embedded;
+
+  return new Resource(unparsedResource, links, embedded, parser);
 }
 module.exports = parser;
 

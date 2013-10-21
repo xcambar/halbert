@@ -21,8 +21,8 @@ function Link(desc) {
   }
 
   this.templated = desc.templated === true;
-  
-  
+
+
   if (has('deprecation') && !validate('deprecation', 'Boolean') && !validate('deprecation', 'String')) {
     throw new TypeError('Invalid Link deprecation provided');
   }
@@ -30,7 +30,7 @@ function Link(desc) {
   this.deprecationInfo = !desc.deprecation || _.isBoolean(desc.deprecation) ? null : desc.deprecation;
 
 
-  ['type', 'name', 'profile', 'title', 'hreflang'].forEach(function (prop) {
+  ['type', 'name', 'profile', 'title', 'href', 'hreflang'].forEach(function (prop) {
     if (has(prop) && !validate(prop, 'String')) {
       throw new Error('Invalid link property "' + prop + '" provided.');
     }
