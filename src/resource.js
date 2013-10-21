@@ -1,8 +1,7 @@
-var parser = require('./parser'),
-    ResourceLinks = require('./links'),
+var ResourceLinks = require('./links'),
     utils = require('./utils');
 
-function parseEmbedded(embedded) {
+function parseEmbedded(embedded, parser) {
   "use strict";
   var parsed = {};
   Object.keys(embedded).forEach(function (key) {
@@ -12,17 +11,19 @@ function parseEmbedded(embedded) {
   return parsed;
 }
 
-function Resource(json, links, embedded) {
+function Resource(unparsedResource, links, embedded, parser) {
   "use strict";
-  if (!utils.isObjectLiteral(json)) {
+  var self = this
+
+  if (!utils.isObjectLiteral(unparsedResource)) {
     throw new Error('No object provided');
   }
 
-  var embeddedResources = parseEmbedded(embedded || {});
+  var embeddedResources = parseEmbedded(embedded || {}, parser);
   var resourceLinks = new ResourceLinks(links);
 
   this.toJSON = function () {
-    return json;
+    return unparsedResource;
   };
 
   this.embedded = function (key) {
@@ -32,6 +33,12 @@ function Resource(json, links, embedded) {
   this.links = function (key) {
     return key ? resourceLinks.get(key) : resourceLinks;
   };
+
+  // copy non-hal properties (everything that is not _links or _embedded) to
+  // new resource
+  Object.keys(unparsedResource).forEach(function(key) {
+    self[key] = unparsedResource[key];
+  });
 }
 
 module.exports = Resource;
