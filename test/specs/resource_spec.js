@@ -40,7 +40,8 @@ describe("Resources", function () {
     var r2 = parser({_links: {
       "self": {href: '...'}
     }});
-    r2.links('self').should.be.instanceOf(Link);
+    r2.links('self').should.be.instanceOf(Array);
+    r2.links('self')[0].should.be.instanceOf(Link);
   });
 
 });

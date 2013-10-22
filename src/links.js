@@ -16,11 +16,18 @@ function Links(json) {
 
   var links = {};
   Object.keys(json).forEach(function (k) {
-    links[k] = new Link(json[k]);
+    var link = json[k];
+    if (!_.isArray(link)) {
+      link = [link];
+    }
+    var parsedLinks = link.map(function (description) {
+      return new Link(description);
+    });
+    links[k] = parsedLinks;
   });
 
   this.get = function (k) {
-    return links[k];
+    return k ? links[k] : links;
   };
 }
 
