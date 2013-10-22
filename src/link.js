@@ -1,4 +1,3 @@
-var utils = require('./utils');
 var _ = require('lodash');
 
 function Link(desc) {
@@ -12,7 +11,7 @@ function Link(desc) {
     return _['is' + type].call(undefined, desc[key]);
   }
 
-  if (!utils.isObjectLiteral(desc)) {
+  if (!_.isPlainObject(desc)) {
     throw new TypeError('Invalid parameter passed to Link constructor');
   }
 

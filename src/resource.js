@@ -1,5 +1,5 @@
 var ResourceLinks = require('./links'),
-    utils = require('./utils');
+    _ = require('lodash');
 
 function parseEmbedded(embedded, parser) {
   "use strict";
@@ -15,7 +15,7 @@ function Resource(unparsedResource, links, embedded, parser) {
   "use strict";
   var self = this
 
-  if (!utils.isObjectLiteral(unparsedResource)) {
+  if (!_.isPlainObject(unparsedResource)) {
     throw new Error('No object provided');
   }
 

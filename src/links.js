@@ -1,12 +1,12 @@
-var utils = require('./utils');
-var Link = require('./link');
+var Link = require('./link'),
+    _ = require('lodash');
 function Links(json) {
   "use strict";
   if (!json) {
     return;
   }
 
-  if (!utils.isObjectLiteral(json)) {
+  if (!_.isPlainObject(json)) {
     throw new TypeError('The provided object is not an object literal.');
   }
 
