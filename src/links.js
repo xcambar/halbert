@@ -2,6 +2,13 @@ var utils = require('./utils');
 var Link = require('./link');
 function Links(json) {
   "use strict";
+
+  var links = {};
+
+  this.get = function (k) {
+    return links[k];
+  };
+
   if (!json) {
     return;
   }
@@ -14,14 +21,9 @@ function Links(json) {
     throw new TypeError('No link to self.');
   }
 
-  var links = {};
   Object.keys(json).forEach(function (k) {
     links[k] = new Link(json[k]);
   });
-
-  this.get = function (k) {
-    return links[k];
-  };
 }
 
 module.exports = Links;

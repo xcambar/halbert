@@ -4,6 +4,8 @@ var LinkCollection = require('../../src/links');
 var Link = require('../../src/link');
 var parser = require('../../src/parser');
 
+var assert = require('chai').assert;
+
 describe("Resources", function () {
   "use strict";
   it("should be a function", function () {
@@ -28,7 +30,15 @@ describe("Resources", function () {
 
   it("OPTIONALLY has a _links property", function () {
     var r1 = parser({});
-    r1.links().should.be.empty;
+    var links = r1.links();
+    links.get.should.exist;
+
+    // check that links is an empty object except for the method 'get'
+    Object.keys(links).forEach(function(key) {
+      if (key !== 'get') {
+        assert.fail();
+      }
+    });
 
     var r2 = parser({_links: {
       "self": {href: '...'}

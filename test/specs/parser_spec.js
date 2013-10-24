@@ -66,5 +66,13 @@ describe("HAL-Parser", function () {
     order2.currency.should.equal('USD')
     order2.status.should.equal('processing')
   });
+
+  it("should parse a resource without links", function () {
+    var json = fixtures.read('no_links');
+    var resource = parser(json);
+    resource.links().get.should.be.a('function');
+    resource.embedded().should.exist;
+    resource.property.should.equal('value');
+  });
 });
 
