@@ -28,8 +28,9 @@ describe("HAL-Parser", function () {
     var json = fixtures.read('minimal')
     var resource = parser(json);
     resource.links().should.exist;
-    resource.links('self').should.exist;
-    resource.links('self').href.should.equal('dummy');
+    resource.links('self').should.be.an('array');
+    resource.links('self')[0].should.exist;
+    resource.links('self')[0].href.should.equal('dummy');
   });
 
   it("should parse the fixture example 1", function () {
@@ -37,11 +38,11 @@ describe("HAL-Parser", function () {
     var resource = parser(json);
 
     resource.links().should.exist;
-    resource.links('self').href.should.equal('/orders');
-    resource.links('self').templated.should.be.false;
-    resource.links('next').href.should.equal('/orders?page=2');
-    resource.links('find').href.should.equal('/orders{?id}');
-    resource.links('find').templated.should.be.true;
+    resource.links('self')[0].href.should.equal('/orders');
+    resource.links('self')[0].templated.should.be.false;
+    resource.links('next')[0].href.should.equal('/orders?page=2');
+    resource.links('find')[0].href.should.equal('/orders{?id}');
+    resource.links('find')[0].templated.should.be.true;
     // TODO add assertions for admin link object array here once that works
 
     resource.currentlyProcessing.should.equal(14);
@@ -52,16 +53,16 @@ describe("HAL-Parser", function () {
     var order1 = orders[0];
     var order2 = orders[1];
 
-    order1.links('self').href.should.equal('/orders/123')
-    order1.links('basket').href.should.equal('/baskets/98712')
-    order1.links('customer').href.should.equal('/customers/7809')
+    order1.links('self')[0].href.should.equal('/orders/123')
+    order1.links('basket')[0].href.should.equal('/baskets/98712')
+    order1.links('customer')[0].href.should.equal('/customers/7809')
     order1.total.should.equal(30)
     order1.currency.should.equal('USD')
     order1.status.should.equal('shipped')
 
-    order2.links('self').href.should.equal('/orders/124')
-    order2.links('basket').href.should.equal('/baskets/97213')
-    order2.links('customer').href.should.equal('/customers/12369')
+    order2.links('self')[0].href.should.equal('/orders/124')
+    order2.links('basket')[0].href.should.equal('/baskets/97213')
+    order2.links('customer')[0].href.should.equal('/customers/12369')
     order2.total.should.equal(20)
     order2.currency.should.equal('USD')
     order2.status.should.equal('processing')
@@ -70,7 +71,16 @@ describe("HAL-Parser", function () {
   it("should parse a resource without links", function () {
     var json = fixtures.read('no_links');
     var resource = parser(json);
-    resource.links().get.should.be.a('function');
+
+    // check that links is an empty object except for the method 'get'
+    var links = resource.links();
+    links.should.exist;
+    links.get.should.be.a('function');
+    Object.keys(links).forEach(function(key) {
+      if (key !== 'get') {
+        assert.fail();
+      }
+    });
     resource.embedded().should.exist;
     resource.property.should.equal('value');
   });

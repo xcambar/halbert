@@ -1,19 +1,19 @@
-var utils = require('./utils');
-var Link = require('./link');
+var Link = require('./link'),
+    _ = require('lodash');
 function Links(json) {
   "use strict";
 
   var links = {};
 
   this.get = function (k) {
-    return links[k];
+    return k ? links[k] : links;
   };
 
   if (!json) {
     return;
   }
 
-  if (!utils.isObjectLiteral(json)) {
+  if (!_.isPlainObject(json)) {
     throw new TypeError('The provided object is not an object literal.');
   }
 
@@ -22,8 +22,16 @@ function Links(json) {
   }
 
   Object.keys(json).forEach(function (k) {
-    links[k] = new Link(json[k]);
+    var link = json[k];
+    if (!_.isArray(link)) {
+      link = [link];
+    }
+    var parsedLinks = link.map(function (description) {
+      return new Link(description);
+    });
+    links[k] = parsedLinks;
   });
+
 }
 
 module.exports = Links;

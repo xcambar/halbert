@@ -21,7 +21,7 @@
     "grunt-contrib-watch": "~0.5.3"
   },
   "dependencies": {
-    "lodash": "~1.0.1"
+    "lodash": "~2.2.1"
   },
   "optionalDependencies": {
     "browserify": "2"
