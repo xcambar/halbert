@@ -39,9 +39,11 @@ describe("Links parser", function () {
     Links.bind({}, []).should.throw(/not an object literal/i);
   });
 
-  it("should throw if no links to self are provided", function () {
-    Links.bind({}, {}).should.throw(TypeError);
-    Links.bind({}, {}).should.throw(/No link to self/);
+  // Spec says: "Each Resource Object SHOULD contain a 'self' link"
+  // Thus, it is still valid HAL if the self link is missing.
+  it("should not throw if no links to self are provided", function () {
+    var instance = new Links({});
+    instance.should.be.instanceOf(Links);
   });
 
   describe("Describe with a link to self", function () {
@@ -52,7 +54,6 @@ describe("Links parser", function () {
     });
     it("should return an instance of LinkCollection", function () {
       var instance = new Links(this.fakeLinks);
-      instance.should.be.instanceOf(Links);
       instance.should.be.instanceOf(Links);
     });
 

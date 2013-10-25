@@ -2,9 +2,9 @@
 var Link = require('../../src/link');
 var expect = require('chai').expect;
 
-function builder(arg) {
+function builder(arg, validation) {
   return function () {
-    return new Link(arg);
+    return new Link(arg, validation);
   };
 }
 
@@ -24,6 +24,9 @@ describe("Link", function () {
       builder({}).should.throw(/Missing "href"/);
 
       builder({href: '...'}).should.not.throw(Error);
+    });
+    it("may be missing if validation is turned off", function () {
+      builder({}, false).should.not.throw(ReferenceError);
     });
   });
 
@@ -71,6 +74,12 @@ describe("Link", function () {
       builder({href: '...', type: []}).should.throw(Error);
       builder({href: '...', type: ''}).should.not.throw(Error);
     });
-  });
+    it("can be anything if validation is turned off", function () {
+      builder({href: '...', type: ''}, false).should.not.throw(Error);
+      builder({href: '...', type: []}, false).should.not.throw(Error);
+      builder({href: '...', type: null}, false).should.not.throw(Error);
+      builder({href: '...', type: {}}, false).should.not.throw(Error);
+    });
+   });
 });
 

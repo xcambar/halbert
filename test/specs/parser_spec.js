@@ -3,6 +3,7 @@ var parser = require('../../src/parser'),
     Resource = require('../../src/resource'),
     fixtures = require('./fixture_util'),
     should = require('chai').should();
+    expect = require('chai').expect;
 
 describe("HAL-Parser", function () {
   "use strict";
@@ -90,6 +91,38 @@ describe("HAL-Parser", function () {
 
     resource.embedded().should.exist;
     resource.property.should.equal('value');
+  });
+
+  it("should be liberal in what it accepts when validation is turned off",
+      function () {
+    var json = {
+      _links: {
+        notSelf: {
+          href: "/no/self/link",
+          description: "self link is not required by the spec"
+        },
+        first: { description: "this link has no href" },
+        second: {
+          href: "/href",
+          type: [ "an attribue might not be a string, but do I care?" ]
+        },
+        third: {
+          href: "href",
+          type: null,
+          description: "this one has a null-attribute"
+        }
+      }
+    };
+    var resource = parser(json, false);
+    resource.links().should.exist;
+    should.not.exist(resource.links('self'));
+    resource.links('first').should.exist;
+    resource.links('first')[0].should.exist;
+    should.not.exist(resource.links('first')[0].href);
+    resource.links('second')[0].type.should.exist;
+    resource.links('second')[0].type.should.be.an('array');
+    expect(resource.links('third')[0].type).to.be.a('null');
+    expect(resource.links('third')[0].type).not.to.be.an('undefined');
   });
 });
 

@@ -1,7 +1,8 @@
 var Link = require('./link'),
     _ = require('lodash');
-function Links(json) {
+function Links(json, validation) {
   "use strict";
+  validation = validation == null ? true : validation;
 
   var links = {};
 
@@ -17,17 +18,13 @@ function Links(json) {
     throw new TypeError('The provided object is not an object literal.');
   }
 
-  if (!json.hasOwnProperty('self')) {
-    throw new TypeError('No link to self.');
-  }
-
   Object.keys(json).forEach(function (k) {
     var link = json[k];
     if (!_.isArray(link)) {
       link = [link];
     }
     var parsedLinks = link.map(function (description) {
-      return new Link(description);
+      return new Link(description, validation);
     });
     links[k] = parsedLinks;
   });
