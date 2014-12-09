@@ -38,7 +38,7 @@ You can build `halbert` by using [browserify](http://github.com/substack/node-br
 The generated file will be [UMD](https://github.com/umdjs/umd)-compatible, which means:
 
 * If you use it in an AMD application, HALbert will be available by doing `require('halbert')`.
-* Otherwise, il will be available as `window.halbert`
+* Otherwise, it will be available as `window.halbert`
 
 # Usage
 
