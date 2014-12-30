@@ -1,17 +1,19 @@
 var ResourceLinks = require('./links'),
     _ = require('lodash');
 
-function parseEmbedded(embedded, parser) {
+function parseEmbedded(embedded, parser, validation) {
   "use strict";
   var parsed = {};
+  var parseSingleEmbedded = _.partialRight(parser, validation);
   Object.keys(embedded).forEach(function (key) {
     var typedResources = embedded[key];
-    parsed[key] = typedResources.map ? typedResources.map(parser) : typedResources;
+    parsed[key] = typedResources.map ?
+        typedResources.map(parseSingleEmbedded) : typedResources;
   });
   return parsed;
 }
 
-function Resource(unparsedResource, links, embedded, parser) {
+function Resource(unparsedResource, links, embedded, parser, validation) {
   "use strict";
   var self = this
 
@@ -19,8 +21,8 @@ function Resource(unparsedResource, links, embedded, parser) {
     throw new Error('No object provided');
   }
 
-  var embeddedResources = parseEmbedded(embedded || {}, parser);
-  var resourceLinks = new ResourceLinks(links);
+  var embeddedResources = parseEmbedded(embedded || {}, parser, validation);
+  var resourceLinks = new ResourceLinks(links, validation);
 
   this.toJSON = function () {
     return unparsedResource;

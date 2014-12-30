@@ -8,13 +8,12 @@ This JS implementation is for the `HAL-JSON` variant, having the media type `app
 
 ## HAL Status
 
-HAL-JSON is currently at its 5th revision as an Internet Draft at the IETF, and can be read [here](http://tools.ietf.org/html/draft-kelly-json-hal-05).
+HAL-JSON is currently at its 5th revision as an Internet Draft at the IETF, and can be read [here](http://tools.ietf.org/html/draft-kelly-json-hal-06).
 
 ## HALbert compliance with HAL
 
 This Javascript implementation has been made to be _mostly_ compliant with the current draft. The divergences with the draft being:
 
-* `_links_` is still optional to a Resource, but if present, it MUST contain a `self` entry
 * Validation of templated URIs has not been implemented.
 
 # Installation
@@ -48,6 +47,12 @@ Simply execute
 
 If for any reason, the `json_object` does not describe a valid HAL Resource, an Error will be thrown.
 
+## Disable Validation
+
+In some situations, it might be desirable to use a less strict validation for the resources you are parsing - for example, if you are the client of a HAL API and are trying to adhere to [Postel's law](http://en.wikipedia.org/wiki/Robustness_principle) (especially the _"be liberal in what you accept"_ part). For this purpose, you can disable most of Halbert's validation checks by calling the parser with a second parameter, like this:
+
+    var resource = parser(json_object, false)
+
 # Roadmap
 
 * Add examples for various situations (Node.js, Express, Ember, Angular, Backbone...)
@@ -57,7 +62,3 @@ If for any reason, the `json_object` does not describe a valid HAL Resource, an 
 # License
 
 MIT, see [LICENSE.md](xcambar/halbert/LICENSE.md)
-
-
-
-
