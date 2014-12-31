@@ -2,6 +2,13 @@ var Link = require('./link'),
     _ = require('lodash');
 function Links(json) {
   "use strict";
+
+  var links = {};
+
+  this.get = function (k) {
+    return k ? links[k] : links;
+  };
+
   if (!json) {
     return;
   }
@@ -14,7 +21,6 @@ function Links(json) {
     throw new TypeError('No link to self.');
   }
 
-  var links = {};
   Object.keys(json).forEach(function (k) {
     var link = json[k];
     if (!_.isArray(link)) {
@@ -26,9 +32,6 @@ function Links(json) {
     links[k] = parsedLinks;
   });
 
-  this.get = function (k) {
-    return k ? links[k] : links;
-  };
 }
 
 module.exports = Links;

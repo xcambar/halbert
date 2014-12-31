@@ -57,7 +57,3 @@ If for any reason, the `json_object` does not describe a valid HAL Resource, an 
 # License
 
 MIT, see [LICENSE.md](xcambar/halbert/LICENSE.md)
-
-
-
-

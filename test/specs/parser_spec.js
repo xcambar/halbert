@@ -1,7 +1,8 @@
 /*global it:true, describe:true*/
 var parser = require('../../src/parser'),
     Resource = require('../../src/resource'),
-    fixtures = require('./fixture_util');
+    fixtures = require('./fixture_util'),
+    should = require('chai').should();
 
 describe("HAL-Parser", function () {
   "use strict";
@@ -66,6 +67,29 @@ describe("HAL-Parser", function () {
     order2.total.should.equal(20)
     order2.currency.should.equal('USD')
     order2.status.should.equal('processing')
+  });
+
+  it("should parse a resource without links", function () {
+    var json = fixtures.read('no_links');
+    var resource = parser(json);
+
+    // check that resource.links('something') returns null/undefined instead
+    // of throwing an exception
+    var nonExistingLink = resource.links('whatever');
+    should.not.exist(nonExistingLink);
+
+    // check that links is an empty object except for the method 'get'
+    var links = resource.links();
+    links.should.exist;
+    links.get.should.be.a('function');
+    Object.keys(links).forEach(function(key) {
+      if (key !== 'get') {
+        assert.fail();
+      }
+    });
+
+    resource.embedded().should.exist;
+    resource.property.should.equal('value');
   });
 });
 
